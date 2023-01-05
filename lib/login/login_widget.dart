@@ -51,7 +51,7 @@ class _LoginWidgetState extends State<LoginWidget> {
         'uid': uid,
         'display_name':nickname,
         'email': emailAddress,
-        'ImageUrl':url,
+        'photo_url':url,
 
       });
     }
