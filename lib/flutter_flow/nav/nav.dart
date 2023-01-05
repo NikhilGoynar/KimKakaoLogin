@@ -9,7 +9,7 @@ import '../../backend/backend.dart';
 import '../../auth/firebase_user_provider.dart';
 
 import '../../index.dart';
-import '../../main.dart';
+import '../../../main.dart';
 import '../lat_lng.dart';
 import '../place.dart';
 import 'serialization_util.dart';
