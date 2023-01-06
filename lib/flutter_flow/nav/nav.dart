@@ -9,7 +9,7 @@ import '../../backend/backend.dart';
 import '../../auth/firebase_user_provider.dart';
 
 import '../../index.dart';
-import '../../../main.dart';
+import '../../main.dart';
 import '../lat_lng.dart';
 import '../place.dart';
 import 'serialization_util.dart';
@@ -83,14 +83,14 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               builder: (context, params) => OnbodingWidget(),
             ),
             FFRoute(
-              name: 'user_signUp',
-              path: 'userSignUp',
-              builder: (context, params) => UserSignUpWidget(),
-            ),
-            FFRoute(
               name: 'Manager_signUp',
               path: 'managerSignUp',
               builder: (context, params) => ManagerSignUpWidget(),
+            ),
+            FFRoute(
+              name: 'user_signUp',
+              path: 'userSignUp',
+              builder: (context, params) => UserSignUpWidget(),
             ),
             FFRoute(
               name: 'Login',
@@ -103,11 +103,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               builder: (context, params) => HomePageWidget(),
             ),
             FFRoute(
-              name: 'user_postAdd',
-              path: 'userPostAdd',
-              builder: (context, params) => UserPostAddWidget(),
-            ),
-            FFRoute(
               name: 'user_requestAdd',
               path: 'userRequestAdd',
               builder: (context, params) => UserRequestAddWidget(),
@@ -118,14 +113,30 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               builder: (context, params) => UserRequestAdd02Widget(),
             ),
             FFRoute(
+              name: 'user_postAdd',
+              path: 'userPostAdd',
+              builder: (context, params) => UserPostAddWidget(),
+            ),
+            FFRoute(
               name: 'user_requestAdd03',
               path: 'userRequestAdd03',
-              builder: (context, params) => UserRequestAdd03Widget(),
+              builder: (context, params) => UserRequestAdd03Widget(
+                requestDetRef: params.getParam('requestDetRef',
+                    ParamType.DocumentReference, false, ['users']),
+              ),
             ),
             FFRoute(
               name: 'user_requestAdd04',
               path: 'userRequestAdd04',
               builder: (context, params) => UserRequestAdd04Widget(),
+            ),
+            FFRoute(
+              name: 'user_requestAdd05',
+              path: 'userRequestAdd05',
+              builder: (context, params) => UserRequestAdd05Widget(
+                requestDetRef: params.getParam('requestDetRef',
+                    ParamType.DocumentReference, false, ['users']),
+              ),
             ),
             FFRoute(
               name: 'Case01',
@@ -143,19 +154,100 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               builder: (context, params) => Case01DetailWidget(),
             ),
             FFRoute(
-              name: 'Case02_detail',
-              path: 'case02Detail',
-              builder: (context, params) => Case02DetailWidget(),
-            ),
-            FFRoute(
               name: 'QnA',
               path: 'qnA',
               builder: (context, params) => QnAWidget(),
             ),
             FFRoute(
+              name: 'Case02_detail',
+              path: 'case02Detail',
+              builder: (context, params) => Case02DetailWidget(),
+            ),
+            FFRoute(
               name: 'notice',
               path: 'notice',
               builder: (context, params) => NoticeWidget(),
+            ),
+            FFRoute(
+              name: 'profileDet',
+              path: 'profileDet',
+              builder: (context, params) => ProfileDetWidget(),
+            ),
+            FFRoute(
+              name: 'profileUser',
+              path: 'profileUser',
+              builder: (context, params) => ProfileUserWidget(),
+            ),
+            FFRoute(
+              name: 'userPostList',
+              path: 'userPostList',
+              builder: (context, params) => UserPostListWidget(),
+            ),
+            FFRoute(
+              name: 'detPostList',
+              path: 'detPostList',
+              builder: (context, params) => DetPostListWidget(),
+            ),
+            FFRoute(
+              name: 'userpostListDetail',
+              path: 'userpostListDetail',
+              builder: (context, params) => UserpostListDetailWidget(),
+            ),
+            FFRoute(
+              name: 'detpostListDetail',
+              path: 'detpostListDetail',
+              builder: (context, params) => DetpostListDetailWidget(),
+            ),
+            FFRoute(
+              name: 'detRequestList',
+              path: 'detRequestList',
+              builder: (context, params) => DetRequestListWidget(),
+            ),
+            FFRoute(
+              name: 'detRequestListDetail',
+              path: 'detRequestListDetail',
+              builder: (context, params) => DetRequestListDetailWidget(),
+            ),
+            FFRoute(
+              name: 'indexProblem',
+              path: 'indexProblem',
+              builder: (context, params) => IndexProblemWidget(
+                problemRef: params.getParam('problemRef',
+                    ParamType.DocumentReference, false, ['problem']),
+              ),
+            ),
+            FFRoute(
+              name: 'indexUser',
+              path: 'indexUser',
+              asyncParams: {
+                'indexUser': getDoc(['users'], UsersRecord.serializer),
+              },
+              builder: (context, params) => IndexUserWidget(
+                indexUser: params.getParam('indexUser', ParamType.Document),
+              ),
+            ),
+            FFRoute(
+              name: 'indexArea',
+              path: 'indexArea',
+              builder: (context, params) => IndexAreaWidget(
+                indexAreaRef: params.getParam('indexAreaRef',
+                    ParamType.DocumentReference, false, ['area']),
+              ),
+            ),
+            FFRoute(
+              name: 'onboding02',
+              path: 'onboding02',
+              builder: (context, params) => Onboding02Widget(),
+            ),
+            FFRoute(
+              name: 'user_signUp02',
+              path: 'userSignUp02',
+              builder: (context, params) => UserSignUp02Widget(),
+            ),
+            FFRoute(
+              name: 'Manager_signUp03',
+              path: 'managerSignUp03',
+              builder: (context, params) => ManagerSignUp03Widget(),
             )
           ].map((r) => r.toRoute(appStateNotifier)).toList(),
         ).toRoute(appStateNotifier),

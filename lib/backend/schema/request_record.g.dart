@@ -79,6 +79,39 @@ class _$RequestRecordSerializer implements StructuredSerializer<RequestRecord> {
             specifiedType: const FullType(
                 DocumentReference, const [const FullType.nullable(Object)])));
     }
+    value = object.title;
+    if (value != null) {
+      result
+        ..add('title')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.likeBy;
+    if (value != null) {
+      result
+        ..add('like_by')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(BuiltList, const [
+              const FullType(
+                  DocumentReference, const [const FullType.nullable(Object)])
+            ])));
+    }
+    value = object.detUserlist;
+    if (value != null) {
+      result
+        ..add('det_userlist')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(BuiltList, const [
+              const FullType(
+                  DocumentReference, const [const FullType.nullable(Object)])
+            ])));
+    }
+    value = object.commentsCount;
+    if (value != null) {
+      result
+        ..add('comments_count')
+        ..add(serializers.serialize(value, specifiedType: const FullType(int)));
+    }
     value = object.ffRef;
     if (value != null) {
       result
@@ -140,6 +173,28 @@ class _$RequestRecordSerializer implements StructuredSerializer<RequestRecord> {
                 const FullType.nullable(Object)
               ])) as DocumentReference<Object?>?;
           break;
+        case 'title':
+          result.title = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'like_by':
+          result.likeBy.replace(serializers.deserialize(value,
+              specifiedType: const FullType(BuiltList, const [
+                const FullType(
+                    DocumentReference, const [const FullType.nullable(Object)])
+              ]))! as BuiltList<Object?>);
+          break;
+        case 'det_userlist':
+          result.detUserlist.replace(serializers.deserialize(value,
+              specifiedType: const FullType(BuiltList, const [
+                const FullType(
+                    DocumentReference, const [const FullType.nullable(Object)])
+              ]))! as BuiltList<Object?>);
+          break;
+        case 'comments_count':
+          result.commentsCount = serializers.deserialize(value,
+              specifiedType: const FullType(int)) as int?;
+          break;
         case 'Document__Reference__Field':
           result.ffRef = serializers.deserialize(value,
               specifiedType: const FullType(DocumentReference, const [
@@ -171,6 +226,14 @@ class _$RequestRecord extends RequestRecord {
   @override
   final DocumentReference<Object?>? postUser;
   @override
+  final String? title;
+  @override
+  final BuiltList<DocumentReference<Object?>>? likeBy;
+  @override
+  final BuiltList<DocumentReference<Object?>>? detUserlist;
+  @override
+  final int? commentsCount;
+  @override
   final DocumentReference<Object?>? ffRef;
 
   factory _$RequestRecord([void Function(RequestRecordBuilder)? updates]) =>
@@ -185,6 +248,10 @@ class _$RequestRecord extends RequestRecord {
       this.description,
       this.file,
       this.postUser,
+      this.title,
+      this.likeBy,
+      this.detUserlist,
+      this.commentsCount,
       this.ffRef})
       : super._();
 
@@ -207,6 +274,10 @@ class _$RequestRecord extends RequestRecord {
         description == other.description &&
         file == other.file &&
         postUser == other.postUser &&
+        title == other.title &&
+        likeBy == other.likeBy &&
+        detUserlist == other.detUserlist &&
+        commentsCount == other.commentsCount &&
         ffRef == other.ffRef;
   }
 
@@ -219,14 +290,24 @@ class _$RequestRecord extends RequestRecord {
                     $jc(
                         $jc(
                             $jc(
-                                $jc($jc(0, createdTime.hashCode),
-                                    problem.hashCode),
-                                area.hashCode),
-                            detectiveUser.hashCode),
-                        callNow.hashCode),
-                    description.hashCode),
-                file.hashCode),
-            postUser.hashCode),
+                                $jc(
+                                    $jc(
+                                        $jc(
+                                            $jc(
+                                                $jc(
+                                                    $jc(0,
+                                                        createdTime.hashCode),
+                                                    problem.hashCode),
+                                                area.hashCode),
+                                            detectiveUser.hashCode),
+                                        callNow.hashCode),
+                                    description.hashCode),
+                                file.hashCode),
+                            postUser.hashCode),
+                        title.hashCode),
+                    likeBy.hashCode),
+                detUserlist.hashCode),
+            commentsCount.hashCode),
         ffRef.hashCode));
   }
 
@@ -241,6 +322,10 @@ class _$RequestRecord extends RequestRecord {
           ..add('description', description)
           ..add('file', file)
           ..add('postUser', postUser)
+          ..add('title', title)
+          ..add('likeBy', likeBy)
+          ..add('detUserlist', detUserlist)
+          ..add('commentsCount', commentsCount)
           ..add('ffRef', ffRef))
         .toString();
   }
@@ -284,6 +369,27 @@ class RequestRecordBuilder
   set postUser(DocumentReference<Object?>? postUser) =>
       _$this._postUser = postUser;
 
+  String? _title;
+  String? get title => _$this._title;
+  set title(String? title) => _$this._title = title;
+
+  ListBuilder<DocumentReference<Object?>>? _likeBy;
+  ListBuilder<DocumentReference<Object?>> get likeBy =>
+      _$this._likeBy ??= new ListBuilder<DocumentReference<Object?>>();
+  set likeBy(ListBuilder<DocumentReference<Object?>>? likeBy) =>
+      _$this._likeBy = likeBy;
+
+  ListBuilder<DocumentReference<Object?>>? _detUserlist;
+  ListBuilder<DocumentReference<Object?>> get detUserlist =>
+      _$this._detUserlist ??= new ListBuilder<DocumentReference<Object?>>();
+  set detUserlist(ListBuilder<DocumentReference<Object?>>? detUserlist) =>
+      _$this._detUserlist = detUserlist;
+
+  int? _commentsCount;
+  int? get commentsCount => _$this._commentsCount;
+  set commentsCount(int? commentsCount) =>
+      _$this._commentsCount = commentsCount;
+
   DocumentReference<Object?>? _ffRef;
   DocumentReference<Object?>? get ffRef => _$this._ffRef;
   set ffRef(DocumentReference<Object?>? ffRef) => _$this._ffRef = ffRef;
@@ -303,6 +409,10 @@ class RequestRecordBuilder
       _description = $v.description;
       _file = $v.file?.toBuilder();
       _postUser = $v.postUser;
+      _title = $v.title;
+      _likeBy = $v.likeBy?.toBuilder();
+      _detUserlist = $v.detUserlist?.toBuilder();
+      _commentsCount = $v.commentsCount;
       _ffRef = $v.ffRef;
       _$v = null;
     }
@@ -336,12 +446,21 @@ class RequestRecordBuilder
               description: description,
               file: _file?.build(),
               postUser: postUser,
+              title: title,
+              likeBy: _likeBy?.build(),
+              detUserlist: _detUserlist?.build(),
+              commentsCount: commentsCount,
               ffRef: ffRef);
     } catch (_) {
       late String _$failedField;
       try {
         _$failedField = 'file';
         _file?.build();
+
+        _$failedField = 'likeBy';
+        _likeBy?.build();
+        _$failedField = 'detUserlist';
+        _detUserlist?.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
             r'RequestRecord', _$failedField, e.toString());

@@ -1,5 +1,8 @@
+import '../auth/auth_util.dart';
+import '../backend/backend.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -47,7 +50,7 @@ class _UserPostAddWidgetState extends State<UserPostAddWidget> {
               mainAxisSize: MainAxisSize.max,
               children: [
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0, 30, 0, 0),
+                  padding: EdgeInsetsDirectional.fromSTEB(0, 40, 0, 0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -704,16 +707,16 @@ class _UserPostAddWidgetState extends State<UserPostAddWidget> {
                           ),
                           child: TextFormField(
                             controller: textController,
-                            autofocus: true,
                             obscureText: false,
                             decoration: InputDecoration(
-                              hintText: '사람이나 지역을 특정할 수 있는 내용은 제외하고작성바랍니다.',
+                              hintText: '사람이나 지역을 특정할 수 있는 내용은 제외하고\n작성바랍니다.',
                               hintStyle: FlutterFlowTheme.of(context)
                                   .bodyText2
                                   .override(
                                     fontFamily: 'NotoSansKR',
                                     color: Color(0xFFB0B7BE),
-                                    fontWeight: FontWeight.w500,
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.normal,
                                     useGoogleFonts: false,
                                   ),
                               enabledBorder: UnderlineInputBorder(
@@ -775,45 +778,64 @@ class _UserPostAddWidgetState extends State<UserPostAddWidget> {
                 ),
                 Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 10),
-                  child: Container(
-                    width: double.infinity,
-                    height: 60,
-                    decoration: BoxDecoration(
-                      color: FlutterFlowTheme.of(context).primaryColor,
-                      borderRadius: BorderRadius.circular(15),
-                    ),
-                    child: Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(5, 5, 5, 5),
-                      child: Column(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            '사연 글 업로드',
-                            style:
-                                FlutterFlowTheme.of(context).bodyText1.override(
-                                      fontFamily: 'NotoSansKR',
-                                      color: Colors.white,
-                                      fontSize: 18,
-                                      useGoogleFonts: false,
-                                    ),
-                          ),
-                        ],
+                  child: InkWell(
+                    onTap: () async {
+                      final postCreateData = createPostRecordData(
+                        createdTime: getCurrentTimestamp,
+                        problem: FFAppState().userPostAdd,
+                        description: textController!.text,
+                        postUser: currentUserReference,
+                      );
+                      await PostRecord.collection.doc().set(postCreateData);
+
+                      context.pushNamed('userPostList');
+                    },
+                    child: Container(
+                      width: double.infinity,
+                      height: 60,
+                      decoration: BoxDecoration(
+                        color: FlutterFlowTheme.of(context).primaryColor,
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                      child: Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(5, 5, 5, 5),
+                        child: Column(
+                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              '사연 글 업로드',
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyText1
+                                  .override(
+                                    fontFamily: 'NotoSansKR',
+                                    color: Colors.white,
+                                    fontSize: 18,
+                                    useGoogleFonts: false,
+                                  ),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ),
                 ),
                 Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 40),
-                  child: Text(
-                    '내가 쓴 사연글 보기',
-                    style: FlutterFlowTheme.of(context).bodyText1.override(
-                          fontFamily: 'NotoSansKR',
-                          color: FlutterFlowTheme.of(context).primaryColor,
-                          fontWeight: FontWeight.w500,
-                          decoration: TextDecoration.underline,
-                          useGoogleFonts: false,
-                        ),
+                  child: InkWell(
+                    onTap: () async {
+                      context.pushNamed('userPostList');
+                    },
+                    child: Text(
+                      '내가 쓴 사연글 보기',
+                      style: FlutterFlowTheme.of(context).bodyText1.override(
+                            fontFamily: 'NotoSansKR',
+                            color: FlutterFlowTheme.of(context).primaryColor,
+                            fontWeight: FontWeight.w500,
+                            decoration: TextDecoration.underline,
+                            useGoogleFonts: false,
+                          ),
+                    ),
                   ),
                 ),
               ],

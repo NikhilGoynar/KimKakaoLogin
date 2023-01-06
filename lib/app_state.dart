@@ -67,6 +67,26 @@ class FFAppState extends ChangeNotifier {
   set noticeOpen(bool _value) {
     _noticeOpen = _value;
   }
+
+  List<String> _signUpProblem = [];
+  List<String> get signUpProblem => _signUpProblem;
+  set signUpProblem(List<String> _value) {
+    _signUpProblem = _value;
+  }
+
+  void addToSignUpProblem(String _value) {
+    _signUpProblem.add(_value);
+  }
+
+  void removeFromSignUpProblem(String _value) {
+    _signUpProblem.remove(_value);
+  }
+
+  bool _loginTop = false;
+  bool get loginTop => _loginTop;
+  set loginTop(bool _value) {
+    _loginTop = _value;
+  }
 }
 
 LatLng? _latLngFromString(String? val) {

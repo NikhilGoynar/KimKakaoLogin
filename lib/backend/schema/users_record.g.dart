@@ -88,12 +88,6 @@ class _$UsersRecordSerializer implements StructuredSerializer<UsersRecord> {
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
-    value = object.likeBy;
-    if (value != null) {
-      result
-        ..add('like_by')
-        ..add(serializers.serialize(value, specifiedType: const FullType(int)));
-    }
     value = object.friendUser;
     if (value != null) {
       result
@@ -107,6 +101,24 @@ class _$UsersRecordSerializer implements StructuredSerializer<UsersRecord> {
         ..add('route')
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
+    }
+    value = object.problem;
+    if (value != null) {
+      result
+        ..add('problem')
+        ..add(serializers.serialize(value,
+            specifiedType:
+                const FullType(BuiltList, const [const FullType(String)])));
+    }
+    value = object.likeBy;
+    if (value != null) {
+      result
+        ..add('like_by')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(BuiltList, const [
+              const FullType(
+                  DocumentReference, const [const FullType.nullable(Object)])
+            ])));
     }
     value = object.ffRef;
     if (value != null) {
@@ -170,10 +182,6 @@ class _$UsersRecordSerializer implements StructuredSerializer<UsersRecord> {
           result.jobDetective = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
-        case 'like_by':
-          result.likeBy = serializers.deserialize(value,
-              specifiedType: const FullType(int)) as int?;
-          break;
         case 'friend_user':
           result.friendUser = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
@@ -181,6 +189,19 @@ class _$UsersRecordSerializer implements StructuredSerializer<UsersRecord> {
         case 'route':
           result.route = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
+          break;
+        case 'problem':
+          result.problem.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      BuiltList, const [const FullType(String)]))!
+              as BuiltList<Object?>);
+          break;
+        case 'like_by':
+          result.likeBy.replace(serializers.deserialize(value,
+              specifiedType: const FullType(BuiltList, const [
+                const FullType(
+                    DocumentReference, const [const FullType.nullable(Object)])
+              ]))! as BuiltList<Object?>);
           break;
         case 'Document__Reference__Field':
           result.ffRef = serializers.deserialize(value,
@@ -217,11 +238,13 @@ class _$UsersRecord extends UsersRecord {
   @override
   final String? jobDetective;
   @override
-  final int? likeBy;
-  @override
   final String? friendUser;
   @override
   final String? route;
+  @override
+  final BuiltList<String>? problem;
+  @override
+  final BuiltList<DocumentReference<Object?>>? likeBy;
   @override
   final DocumentReference<Object?>? ffRef;
 
@@ -239,9 +262,10 @@ class _$UsersRecord extends UsersRecord {
       this.level,
       this.officeDetective,
       this.jobDetective,
-      this.likeBy,
       this.friendUser,
       this.route,
+      this.problem,
+      this.likeBy,
       this.ffRef})
       : super._();
 
@@ -266,9 +290,10 @@ class _$UsersRecord extends UsersRecord {
         level == other.level &&
         officeDetective == other.officeDetective &&
         jobDetective == other.jobDetective &&
-        likeBy == other.likeBy &&
         friendUser == other.friendUser &&
         route == other.route &&
+        problem == other.problem &&
+        likeBy == other.likeBy &&
         ffRef == other.ffRef;
   }
 
@@ -286,19 +311,24 @@ class _$UsersRecord extends UsersRecord {
                                         $jc(
                                             $jc(
                                                 $jc(
-                                                    $jc($jc(0, email.hashCode),
-                                                        displayName.hashCode),
-                                                    photoUrl.hashCode),
-                                                uid.hashCode),
-                                            createdTime.hashCode),
-                                        phoneNumber.hashCode),
-                                    area.hashCode),
-                                level.hashCode),
-                            officeDetective.hashCode),
-                        jobDetective.hashCode),
-                    likeBy.hashCode),
-                friendUser.hashCode),
-            route.hashCode),
+                                                    $jc(
+                                                        $jc(
+                                                            $jc(0,
+                                                                email.hashCode),
+                                                            displayName
+                                                                .hashCode),
+                                                        photoUrl.hashCode),
+                                                    uid.hashCode),
+                                                createdTime.hashCode),
+                                            phoneNumber.hashCode),
+                                        area.hashCode),
+                                    level.hashCode),
+                                officeDetective.hashCode),
+                            jobDetective.hashCode),
+                        friendUser.hashCode),
+                    route.hashCode),
+                problem.hashCode),
+            likeBy.hashCode),
         ffRef.hashCode));
   }
 
@@ -315,9 +345,10 @@ class _$UsersRecord extends UsersRecord {
           ..add('level', level)
           ..add('officeDetective', officeDetective)
           ..add('jobDetective', jobDetective)
-          ..add('likeBy', likeBy)
           ..add('friendUser', friendUser)
           ..add('route', route)
+          ..add('problem', problem)
+          ..add('likeBy', likeBy)
           ..add('ffRef', ffRef))
         .toString();
   }
@@ -367,10 +398,6 @@ class UsersRecordBuilder implements Builder<UsersRecord, UsersRecordBuilder> {
   String? get jobDetective => _$this._jobDetective;
   set jobDetective(String? jobDetective) => _$this._jobDetective = jobDetective;
 
-  int? _likeBy;
-  int? get likeBy => _$this._likeBy;
-  set likeBy(int? likeBy) => _$this._likeBy = likeBy;
-
   String? _friendUser;
   String? get friendUser => _$this._friendUser;
   set friendUser(String? friendUser) => _$this._friendUser = friendUser;
@@ -378,6 +405,17 @@ class UsersRecordBuilder implements Builder<UsersRecord, UsersRecordBuilder> {
   String? _route;
   String? get route => _$this._route;
   set route(String? route) => _$this._route = route;
+
+  ListBuilder<String>? _problem;
+  ListBuilder<String> get problem =>
+      _$this._problem ??= new ListBuilder<String>();
+  set problem(ListBuilder<String>? problem) => _$this._problem = problem;
+
+  ListBuilder<DocumentReference<Object?>>? _likeBy;
+  ListBuilder<DocumentReference<Object?>> get likeBy =>
+      _$this._likeBy ??= new ListBuilder<DocumentReference<Object?>>();
+  set likeBy(ListBuilder<DocumentReference<Object?>>? likeBy) =>
+      _$this._likeBy = likeBy;
 
   DocumentReference<Object?>? _ffRef;
   DocumentReference<Object?>? get ffRef => _$this._ffRef;
@@ -400,9 +438,10 @@ class UsersRecordBuilder implements Builder<UsersRecord, UsersRecordBuilder> {
       _level = $v.level;
       _officeDetective = $v.officeDetective;
       _jobDetective = $v.jobDetective;
-      _likeBy = $v.likeBy;
       _friendUser = $v.friendUser;
       _route = $v.route;
+      _problem = $v.problem?.toBuilder();
+      _likeBy = $v.likeBy?.toBuilder();
       _ffRef = $v.ffRef;
       _$v = null;
     }
@@ -424,22 +463,38 @@ class UsersRecordBuilder implements Builder<UsersRecord, UsersRecordBuilder> {
   UsersRecord build() => _build();
 
   _$UsersRecord _build() {
-    final _$result = _$v ??
-        new _$UsersRecord._(
-            email: email,
-            displayName: displayName,
-            photoUrl: photoUrl,
-            uid: uid,
-            createdTime: createdTime,
-            phoneNumber: phoneNumber,
-            area: area,
-            level: level,
-            officeDetective: officeDetective,
-            jobDetective: jobDetective,
-            likeBy: likeBy,
-            friendUser: friendUser,
-            route: route,
-            ffRef: ffRef);
+    _$UsersRecord _$result;
+    try {
+      _$result = _$v ??
+          new _$UsersRecord._(
+              email: email,
+              displayName: displayName,
+              photoUrl: photoUrl,
+              uid: uid,
+              createdTime: createdTime,
+              phoneNumber: phoneNumber,
+              area: area,
+              level: level,
+              officeDetective: officeDetective,
+              jobDetective: jobDetective,
+              friendUser: friendUser,
+              route: route,
+              problem: _problem?.build(),
+              likeBy: _likeBy?.build(),
+              ffRef: ffRef);
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'problem';
+        _problem?.build();
+        _$failedField = 'likeBy';
+        _likeBy?.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            r'UsersRecord', _$failedField, e.toString());
+      }
+      rethrow;
+    }
     replace(_$result);
     return _$result;
   }

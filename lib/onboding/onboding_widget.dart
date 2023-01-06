@@ -106,8 +106,8 @@ class _OnbodingWidgetState extends State<OnbodingWidget> {
                           });
                         },
                         child: Container(
-                          width: 175,
-                          height: 175,
+                          width: 170,
+                          height: 170,
                           decoration: BoxDecoration(
                             color: FlutterFlowTheme.of(context)
                                 .secondaryBackground,
@@ -184,8 +184,8 @@ class _OnbodingWidgetState extends State<OnbodingWidget> {
                           });
                         },
                         child: Container(
-                          width: 175,
-                          height: 175,
+                          width: 170,
+                          height: 170,
                           decoration: BoxDecoration(
                             color: FlutterFlowTheme.of(context)
                                 .secondaryBackground,

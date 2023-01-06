@@ -81,7 +81,7 @@ class _ManagerSignUpWidgetState extends State<ManagerSignUpWidget> {
               mainAxisSize: MainAxisSize.max,
               children: [
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0, 30, 0, 0),
+                  padding: EdgeInsetsDirectional.fromSTEB(0, 40, 0, 0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -848,7 +848,8 @@ class _ManagerSignUpWidgetState extends State<ManagerSignUpWidget> {
                             style: FlutterFlowTheme.of(context).bodyText1,
                           ),
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(0, 5, 0, 0),
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(0, 5, 0, 10),
                             child: Container(
                               width: double.infinity,
                               height: 50,
@@ -899,6 +900,508 @@ class _ManagerSignUpWidgetState extends State<ManagerSignUpWidget> {
                                   hidesUnderline: true,
                                 ),
                               ),
+                            ),
+                          ),
+                          Text(
+                            '전문 분야',
+                            style: FlutterFlowTheme.of(context).bodyText1,
+                          ),
+                          Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(0, 5, 0, 0),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0, 0, 7, 0),
+                                  child: InkWell(
+                                    onTap: () async {
+                                      if (FFAppState()
+                                          .signUpProblem
+                                          .contains('가정문제')) {
+                                        FFAppState().update(() {
+                                          FFAppState()
+                                              .removeFromSignUpProblem('가정문제');
+                                        });
+                                      } else {
+                                        FFAppState().update(() {
+                                          FFAppState()
+                                              .addToSignUpProblem('가정문제');
+                                        });
+                                      }
+                                    },
+                                    child: Container(
+                                      height: 40,
+                                      decoration: BoxDecoration(
+                                        color: FFAppState()
+                                                .signUpProblem
+                                                .contains('가정문제')
+                                            ? FlutterFlowTheme.of(context)
+                                                .primaryColor
+                                            : Colors.white,
+                                        borderRadius: BorderRadius.circular(10),
+                                        border: Border.all(
+                                          color: FFAppState()
+                                                  .signUpProblem
+                                                  .contains('가정문제')
+                                              ? FlutterFlowTheme.of(context)
+                                                  .primaryColor
+                                              : Color(0xFFBDC5D2),
+                                        ),
+                                      ),
+                                      child: Row(
+                                        mainAxisSize: MainAxisSize.max,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    8, 0, 8, 0),
+                                            child: Text(
+                                              '가정문제',
+                                              style: FlutterFlowTheme.of(
+                                                      context)
+                                                  .bodyText1
+                                                  .override(
+                                                    fontFamily: 'NotoSansKR',
+                                                    color: FFAppState()
+                                                            .signUpProblem
+                                                            .contains('가정문제')
+                                                        ? Colors.white
+                                                        : Color(0xFFBDC5D2),
+                                                    fontWeight: FontWeight.w500,
+                                                    useGoogleFonts: false,
+                                                  ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0, 0, 7, 0),
+                                  child: InkWell(
+                                    onTap: () async {
+                                      if (FFAppState()
+                                          .signUpProblem
+                                          .contains('기업문제')) {
+                                        FFAppState().update(() {
+                                          FFAppState()
+                                              .removeFromSignUpProblem('기업문제');
+                                        });
+                                      } else {
+                                        FFAppState().update(() {
+                                          FFAppState()
+                                              .addToSignUpProblem('기업문제');
+                                        });
+                                      }
+                                    },
+                                    child: Container(
+                                      height: 40,
+                                      decoration: BoxDecoration(
+                                        color: FFAppState()
+                                                .signUpProblem
+                                                .contains('기업문제')
+                                            ? FlutterFlowTheme.of(context)
+                                                .primaryColor
+                                            : Colors.white,
+                                        borderRadius: BorderRadius.circular(10),
+                                        border: Border.all(
+                                          color: FFAppState()
+                                                  .signUpProblem
+                                                  .contains('기업문제')
+                                              ? FlutterFlowTheme.of(context)
+                                                  .primaryColor
+                                              : Color(0xFFBDC5D2),
+                                        ),
+                                      ),
+                                      child: Row(
+                                        mainAxisSize: MainAxisSize.max,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    8, 0, 8, 0),
+                                            child: Text(
+                                              '기업문제',
+                                              style: FlutterFlowTheme.of(
+                                                      context)
+                                                  .bodyText1
+                                                  .override(
+                                                    fontFamily: 'NotoSansKR',
+                                                    color: FFAppState()
+                                                            .signUpProblem
+                                                            .contains('기업문제')
+                                                        ? Colors.white
+                                                        : Color(0xFFBDC5D2),
+                                                    fontWeight: FontWeight.w500,
+                                                    useGoogleFonts: false,
+                                                  ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0, 0, 7, 0),
+                                  child: InkWell(
+                                    onTap: () async {
+                                      if (FFAppState()
+                                          .signUpProblem
+                                          .contains('채권문제')) {
+                                        FFAppState().update(() {
+                                          FFAppState()
+                                              .removeFromSignUpProblem('채권문제');
+                                        });
+                                      } else {
+                                        FFAppState().update(() {
+                                          FFAppState()
+                                              .addToSignUpProblem('채권문제');
+                                        });
+                                      }
+                                    },
+                                    child: Container(
+                                      height: 40,
+                                      decoration: BoxDecoration(
+                                        color: FFAppState()
+                                                .signUpProblem
+                                                .contains('채권문제')
+                                            ? FlutterFlowTheme.of(context)
+                                                .primaryColor
+                                            : Colors.white,
+                                        borderRadius: BorderRadius.circular(10),
+                                        border: Border.all(
+                                          color: FFAppState()
+                                                  .signUpProblem
+                                                  .contains('채권문제')
+                                              ? FlutterFlowTheme.of(context)
+                                                  .primaryColor
+                                              : Color(0xFFBDC5D2),
+                                        ),
+                                      ),
+                                      child: Row(
+                                        mainAxisSize: MainAxisSize.max,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    8, 0, 8, 0),
+                                            child: Text(
+                                              '채권문제',
+                                              style: FlutterFlowTheme.of(
+                                                      context)
+                                                  .bodyText1
+                                                  .override(
+                                                    fontFamily: 'NotoSansKR',
+                                                    color: FFAppState()
+                                                            .signUpProblem
+                                                            .contains('채권문제')
+                                                        ? Colors.white
+                                                        : Color(0xFFBDC5D2),
+                                                    fontWeight: FontWeight.w500,
+                                                    useGoogleFonts: false,
+                                                  ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0, 0, 7, 0),
+                                  child: InkWell(
+                                    onTap: () async {
+                                      if (FFAppState()
+                                          .signUpProblem
+                                          .contains('사기')) {
+                                        FFAppState().update(() {
+                                          FFAppState()
+                                              .removeFromSignUpProblem('사기');
+                                        });
+                                      } else {
+                                        FFAppState().update(() {
+                                          FFAppState().addToSignUpProblem('사기');
+                                        });
+                                      }
+                                    },
+                                    child: Container(
+                                      height: 40,
+                                      decoration: BoxDecoration(
+                                        color: FFAppState()
+                                                .signUpProblem
+                                                .contains('사기')
+                                            ? FlutterFlowTheme.of(context)
+                                                .primaryColor
+                                            : Colors.white,
+                                        borderRadius: BorderRadius.circular(10),
+                                        border: Border.all(
+                                          color: FFAppState()
+                                                  .signUpProblem
+                                                  .contains('사기')
+                                              ? FlutterFlowTheme.of(context)
+                                                  .primaryColor
+                                              : Color(0xFFBDC5D2),
+                                        ),
+                                      ),
+                                      child: Row(
+                                        mainAxisSize: MainAxisSize.max,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    8, 0, 8, 0),
+                                            child: Text(
+                                              '사기',
+                                              style: FlutterFlowTheme.of(
+                                                      context)
+                                                  .bodyText1
+                                                  .override(
+                                                    fontFamily: 'NotoSansKR',
+                                                    color: FFAppState()
+                                                            .signUpProblem
+                                                            .contains('사기')
+                                                        ? Colors.white
+                                                        : Color(0xFFBDC5D2),
+                                                    fontWeight: FontWeight.w500,
+                                                    useGoogleFonts: false,
+                                                  ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          Padding(
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0, 0, 7, 0),
+                                  child: InkWell(
+                                    onTap: () async {
+                                      if (FFAppState()
+                                          .signUpProblem
+                                          .contains('스토킹')) {
+                                        FFAppState().update(() {
+                                          FFAppState()
+                                              .removeFromSignUpProblem('스토킹');
+                                        });
+                                      } else {
+                                        FFAppState().update(() {
+                                          FFAppState()
+                                              .addToSignUpProblem('스토킹');
+                                        });
+                                      }
+                                    },
+                                    child: Container(
+                                      height: 40,
+                                      decoration: BoxDecoration(
+                                        color: FFAppState()
+                                                .signUpProblem
+                                                .contains('스토킹')
+                                            ? FlutterFlowTheme.of(context)
+                                                .primaryColor
+                                            : Colors.white,
+                                        borderRadius: BorderRadius.circular(10),
+                                        border: Border.all(
+                                          color: FFAppState()
+                                                  .signUpProblem
+                                                  .contains('스토킹')
+                                              ? FlutterFlowTheme.of(context)
+                                                  .primaryColor
+                                              : Color(0xFFBDC5D2),
+                                        ),
+                                      ),
+                                      child: Row(
+                                        mainAxisSize: MainAxisSize.max,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    8, 0, 8, 0),
+                                            child: Text(
+                                              '스토킹',
+                                              style: FlutterFlowTheme.of(
+                                                      context)
+                                                  .bodyText1
+                                                  .override(
+                                                    fontFamily: 'NotoSansKR',
+                                                    color: FFAppState()
+                                                            .signUpProblem
+                                                            .contains('스토킹')
+                                                        ? Colors.white
+                                                        : Color(0xFFBDC5D2),
+                                                    fontWeight: FontWeight.w500,
+                                                    useGoogleFonts: false,
+                                                  ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0, 0, 7, 0),
+                                  child: InkWell(
+                                    onTap: () async {
+                                      if (FFAppState()
+                                          .signUpProblem
+                                          .contains('사람찾기')) {
+                                        FFAppState().update(() {
+                                          FFAppState()
+                                              .removeFromSignUpProblem('사람찾기');
+                                        });
+                                      } else {
+                                        FFAppState().update(() {
+                                          FFAppState()
+                                              .addToSignUpProblem('사람찾기');
+                                        });
+                                      }
+                                    },
+                                    child: Container(
+                                      height: 40,
+                                      decoration: BoxDecoration(
+                                        color: FFAppState()
+                                                .signUpProblem
+                                                .contains('사람찾기')
+                                            ? FlutterFlowTheme.of(context)
+                                                .primaryColor
+                                            : Colors.white,
+                                        borderRadius: BorderRadius.circular(10),
+                                        border: Border.all(
+                                          color: FFAppState()
+                                                  .signUpProblem
+                                                  .contains('사람찾기')
+                                              ? FlutterFlowTheme.of(context)
+                                                  .primaryColor
+                                              : Color(0xFFBDC5D2),
+                                        ),
+                                      ),
+                                      child: Row(
+                                        mainAxisSize: MainAxisSize.max,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    8, 0, 8, 0),
+                                            child: Text(
+                                              '사람찾기',
+                                              style: FlutterFlowTheme.of(
+                                                      context)
+                                                  .bodyText1
+                                                  .override(
+                                                    fontFamily: 'NotoSansKR',
+                                                    color: FFAppState()
+                                                            .signUpProblem
+                                                            .contains('사람찾기')
+                                                        ? Colors.white
+                                                        : Color(0xFFBDC5D2),
+                                                    fontWeight: FontWeight.w500,
+                                                    useGoogleFonts: false,
+                                                  ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0, 0, 7, 0),
+                                  child: InkWell(
+                                    onTap: () async {
+                                      if (FFAppState()
+                                          .signUpProblem
+                                          .contains('기타')) {
+                                        FFAppState().update(() {
+                                          FFAppState()
+                                              .removeFromSignUpProblem('기타');
+                                        });
+                                      } else {
+                                        FFAppState().update(() {
+                                          FFAppState().addToSignUpProblem('기타');
+                                        });
+                                      }
+                                    },
+                                    child: Container(
+                                      height: 40,
+                                      decoration: BoxDecoration(
+                                        color: FFAppState()
+                                                .signUpProblem
+                                                .contains('기타')
+                                            ? FlutterFlowTheme.of(context)
+                                                .primaryColor
+                                            : Colors.white,
+                                        borderRadius: BorderRadius.circular(10),
+                                        border: Border.all(
+                                          color: FFAppState()
+                                                  .signUpProblem
+                                                  .contains('기타')
+                                              ? FlutterFlowTheme.of(context)
+                                                  .primaryColor
+                                              : Color(0xFFBDC5D2),
+                                        ),
+                                      ),
+                                      child: Row(
+                                        mainAxisSize: MainAxisSize.max,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    8, 0, 8, 0),
+                                            child: Text(
+                                              '기타',
+                                              style: FlutterFlowTheme.of(
+                                                      context)
+                                                  .bodyText1
+                                                  .override(
+                                                    fontFamily: 'NotoSansKR',
+                                                    color: FFAppState()
+                                                            .signUpProblem
+                                                            .contains('기타')
+                                                        ? Colors.white
+                                                        : Color(0xFFBDC5D2),
+                                                    fontWeight: FontWeight.w500,
+                                                    useGoogleFonts: false,
+                                                  ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
                             ),
                           ),
                         ],
@@ -1153,17 +1656,20 @@ class _ManagerSignUpWidgetState extends State<ManagerSignUpWidget> {
                         passwordFieldController!.text,
                       );
 
-                      final usersUpdateData = createUsersRecordData(
-                        email: emailFieldController!.text,
-                        displayName: nameController!.text,
-                        createdTime: getCurrentTimestamp,
-                        phoneNumber: phone02Controller!.text,
-                        area: areaDDValue,
-                        friendUser: firendController!.text,
-                        route: routeController!.text,
-                        officeDetective: sosocController!.text,
-                        level: 2,
-                      );
+                      final usersUpdateData = {
+                        ...createUsersRecordData(
+                          email: emailFieldController!.text,
+                          displayName: nameController!.text,
+                          createdTime: getCurrentTimestamp,
+                          phoneNumber: phone02Controller!.text,
+                          area: areaDDValue,
+                          friendUser: firendController!.text,
+                          route: routeController!.text,
+                          officeDetective: sosocController!.text,
+                          level: 2,
+                        ),
+                        'problem': FFAppState().signUpProblem,
+                      };
                       await currentUserReference!.update(usersUpdateData);
 
                       context.pushNamed('HomePage');

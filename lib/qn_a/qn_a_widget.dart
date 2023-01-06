@@ -153,50 +153,47 @@ class _QnAWidgetState extends State<QnAWidget> {
                               ),
                             ),
                           ),
-                          Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(0, 0, 8, 0),
-                            child: Container(
-                              width: 155,
-                              height: 65,
-                              decoration: BoxDecoration(
-                                color: FlutterFlowTheme.of(context)
-                                    .secondaryBackground,
-                                borderRadius: BorderRadius.circular(15),
-                                border: Border.all(
-                                  color:
-                                      FlutterFlowTheme.of(context).primaryColor,
-                                ),
+                          Container(
+                            width: 155,
+                            height: 65,
+                            decoration: BoxDecoration(
+                              color: FlutterFlowTheme.of(context)
+                                  .secondaryBackground,
+                              borderRadius: BorderRadius.circular(15),
+                              border: Border.all(
+                                color:
+                                    FlutterFlowTheme.of(context).primaryColor,
                               ),
-                              child: Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    15, 10, 15, 10),
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [
-                                    Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          0, 0, 10, 0),
-                                      child: FaIcon(
-                                        FontAwesomeIcons.search,
-                                        color: FlutterFlowTheme.of(context)
-                                            .primaryColor,
-                                        size: 28,
-                                      ),
+                            ),
+                            child: Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  15, 10, 15, 10),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        0, 0, 10, 0),
+                                    child: FaIcon(
+                                      FontAwesomeIcons.search,
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryColor,
+                                      size: 28,
                                     ),
-                                    Text(
-                                      '탐정 찾기',
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyText1
-                                          .override(
-                                            fontFamily: 'NotoSansKR',
-                                            color: FlutterFlowTheme.of(context)
-                                                .primaryColor,
-                                            fontSize: 20,
-                                            useGoogleFonts: false,
-                                          ),
-                                    ),
-                                  ],
-                                ),
+                                  ),
+                                  Text(
+                                    '탐정 찾기',
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyText1
+                                        .override(
+                                          fontFamily: 'NotoSansKR',
+                                          color: FlutterFlowTheme.of(context)
+                                              .primaryColor,
+                                          fontSize: 20,
+                                          useGoogleFonts: false,
+                                        ),
+                                  ),
+                                ],
                               ),
                             ),
                           ),
@@ -594,7 +591,7 @@ class _QnAWidgetState extends State<QnAWidget> {
                                   ),
                                   Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
-                                        0, 8, 0, 0),
+                                        0, 4, 0, 0),
                                     child: Text(
                                       '회원가입',
                                       style: FlutterFlowTheme.of(context)
@@ -627,7 +624,7 @@ class _QnAWidgetState extends State<QnAWidget> {
                                   ),
                                   Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
-                                        0, 8, 0, 0),
+                                        0, 4, 0, 0),
                                     child: Text(
                                       '로그인',
                                       style: FlutterFlowTheme.of(context)
@@ -664,7 +661,7 @@ class _QnAWidgetState extends State<QnAWidget> {
                                   ),
                                   Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
-                                        0, 8, 0, 0),
+                                        0, 4, 0, 0),
                                     child: Text(
                                       '쿠폰함',
                                       style: FlutterFlowTheme.of(context)
@@ -744,7 +741,7 @@ class _QnAWidgetState extends State<QnAWidget> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(0, 30, 0, 0),
+                      padding: EdgeInsetsDirectional.fromSTEB(0, 40, 0, 0),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,

@@ -1,8 +1,4 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:detective/home_page/home_page_widget.dart';
-
 import '../auth/auth_util.dart';
-import 'package:kakao_flutter_sdk_user/kakao_flutter_sdk_user.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../custom_code/actions/index.dart' as actions;
@@ -10,9 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-
-import 'kakao_login.dart';
-import 'main_view_model.dart';
 
 class LoginWidget extends StatefulWidget {
   const LoginWidget({Key? key}) : super(key: key);
@@ -28,143 +21,10 @@ class _LoginWidgetState extends State<LoginWidget> {
   bool? loginsuccess;
   final _unfocusNode = FocusNode();
   final scaffoldKey = GlobalKey<ScaffoldState>();
-  final viewModel = MainViewModel(KakaoLogin());
-  User? user;
-  createUserFlutterFire(
-    String? emailAddress, String? uid,String? nickname,String? url) async {
-  String? returnAuth = "Valid";
-  try {
-    
-      final CollectionReference<Map<String, dynamic>> usersRef =
-          FirebaseFirestore.instance.collection('users');
-    QuerySnapshot snapshot = await 
-   FirebaseFirestore.instance.collection('users').get();
-   snapshot.docs.forEach((f) {
-    if (f['email'] ==emailAddress) {
-      print("Already user exists");
-      returnAuth="invalid"; 
-      
-    }
-     });
-    if(returnAuth=="Valid"){
-      usersRef.doc().set({
-        'uid': uid,
-        'display_name':nickname,
-        'email': emailAddress,
-        'photo_url':url,
-
-      });
-    }
- 
-   
-      
-    
-  } on Exception catch (e) {
-    returnAuth = e.toString();
-  }
-
-  return ;
-}
-  fn(BuildContext context) async {
-    //bool x = await viewModel.isLogined;
-    User user = await UserApi.instance.me();
-    print('Service user ID: ${user.id}');
-    print('Service user ID: ${user.kakaoAccount?.email}');
-    print('Service user ID: ${user.kakaoAccount?.profile?.nickname}');
-    print(user.kakaoAccount?.profile?.thumbnailImageUrl);
-    print(user.kakaoAccount?.profile?.profileImageUrl);
-    createUserFlutterFire(user.kakaoAccount?.email, user.id.toString(), user.kakaoAccount?.profile?.nickname,user.kakaoAccount?.profile?.profileImageUrl);
-    int a=user.id;
-    print(a);
-  if(a!=null){Navigator.push(
-    context,
-    MaterialPageRoute(builder: (context) =>  HomePageWidget()),
-  );}
-    // context.pushNamedAuth('HomePage', mounted);
-    // if (x) {
-    //   context.pushNamed('HomePage');
-    // } else {
-    //   await showDialog(
-    //     context: context,
-    //     builder: (alertDialogContext) {
-    //       return AlertDialog(
-    //         title: Text('Access Denied!'),
-    //         actions: [
-    //           TextButton(
-    //             onPressed: () => Navigator.pop(alertDialogContext),
-    //             child: Text('Ok'),
-    //           ),
-    //         ],
-    //       );
-    //     },
-    //   );
-    // }
-  }
-  // bool isLogined = false;
-  // User? user;
-
-  // Future<bool> login() async {
-  //   try {
-  //     bool isInstalled = await isKakaoTalkInstalled();
-  //     print("isInstalled is $isInstalled");
-  //     if (isInstalled) {
-  //       try {
-  //         OAuthToken token = await UserApi.instance.loginWithKakaoTalk();
-  //         print('Login succeeded. ${token.accessToken}');
-  //         return true;
-  //       } catch (e) {
-  //         print(e.toString());
-  //         return false;
-  //       }
-  //     } else {
-  //       try {
-  //         OAuthToken token = await UserApi.instance.loginWithKakaoAccount();
-  //         print('Login succeeded. ${token.accessToken}');
-  //         return true;
-  //       } catch (e) {
-  //         print(e.toString());
-  //         return false;
-  //       }
-  //     }
-  //   } catch (e) {
-  //     return false;
-  //   }
-  // }
-
-  // fn() async {
-  //   try {
-  //     AccessTokenInfo tokenInfo = await UserApi.instance.accessTokenInfo();
-  //     print(
-  //         'Succeeded in retrieving token information\nService user ID: ${tokenInfo.id}\nValidity period: ${tokenInfo.expiresIn} seconds');
-  //   } catch (e) {
-  //     print('Failed to retrieve token information.');
-  //   }
-  //   try {
-  //     User user = await UserApi.instance.me();
-  //     print('Succeeded in retrieving user information'
-  //         '\nService user ID: ${user.id}'
-  //         '\nEmail: ${user.kakaoAccount?.email}'
-  //         '\nNickname: ${user.kakaoAccount?.profile?.nickname}'
-  //         '\nProfile Thumbnail Image URI: ${user.kakaoAccount?.profile?.thumbnailImageUrl}');
-  //     print(user);
-  //   } catch (e) {
-  //     print('Failed to retrieve user information');
-  //   }
-  // }
-
-  // Login() async {
-  //   bool Logined = await login();
-  //   print(Logined);
-
-  //   user = await UserApi.instance.me();
-  //   print(user?.id);
-  // }
 
   @override
   void initState() {
     super.initState();
-    //viewModel.login();
-    
     emailTextController = TextEditingController();
     passwordTextController = TextEditingController();
     passwordVisibility = false;
@@ -195,7 +55,7 @@ class _LoginWidgetState extends State<LoginWidget> {
               mainAxisSize: MainAxisSize.max,
               children: [
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(15, 30, 15, 0),
+                  padding: EdgeInsetsDirectional.fromSTEB(15, 40, 15, 0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -235,71 +95,89 @@ class _LoginWidgetState extends State<LoginWidget> {
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     children: [
-                      Container(
-                        width: 180,
-                        height: 60,
-                        decoration: BoxDecoration(
-                          color: FlutterFlowTheme.of(context).primaryColor,
-                          borderRadius: BorderRadius.only(
-                            bottomLeft: Radius.circular(0),
-                            bottomRight: Radius.circular(0),
-                            topLeft: Radius.circular(15),
-                            topRight: Radius.circular(0),
+                      InkWell(
+                        onTap: () async {
+                          FFAppState().update(() {
+                            FFAppState().loginTop = true;
+                          });
+                        },
+                        child: Container(
+                          width: 180,
+                          height: 60,
+                          decoration: BoxDecoration(
+                            color: FFAppState().loginTop == true
+                                ? FlutterFlowTheme.of(context).primaryColor
+                                : Color(0xFFB0B7BE),
+                            borderRadius: BorderRadius.only(
+                              bottomLeft: Radius.circular(0),
+                              bottomRight: Radius.circular(0),
+                              topLeft: Radius.circular(15),
+                              topRight: Radius.circular(0),
+                            ),
                           ),
-                        ),
-                        child: Padding(
-                          padding:
-                              EdgeInsetsDirectional.fromSTEB(10, 10, 10, 10),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                '탐정 로그인',
-                                style: FlutterFlowTheme.of(context)
-                                    .bodyText1
-                                    .override(
-                                      fontFamily: 'NotoSansKR',
-                                      color: Colors.white,
-                                      fontSize: 20,
-                                      useGoogleFonts: false,
-                                    ),
-                              ),
-                            ],
+                          child: Padding(
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(10, 10, 10, 10),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  '탐정 로그인',
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyText1
+                                      .override(
+                                        fontFamily: 'NotoSansKR',
+                                        color: Colors.white,
+                                        fontSize: 20,
+                                        useGoogleFonts: false,
+                                      ),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                       ),
-                      Container(
-                        width: 180,
-                        height: 60,
-                        decoration: BoxDecoration(
-                          color: Color(0xFFB0B7BE),
-                          borderRadius: BorderRadius.only(
-                            bottomLeft: Radius.circular(0),
-                            bottomRight: Radius.circular(0),
-                            topLeft: Radius.circular(0),
-                            topRight: Radius.circular(15),
+                      InkWell(
+                        onTap: () async {
+                          FFAppState().update(() {
+                            FFAppState().loginTop = false;
+                          });
+                        },
+                        child: Container(
+                          width: 180,
+                          height: 60,
+                          decoration: BoxDecoration(
+                            color: FFAppState().loginTop == false
+                                ? FlutterFlowTheme.of(context).primaryColor
+                                : Color(0xFFB0B7BE),
+                            borderRadius: BorderRadius.only(
+                              bottomLeft: Radius.circular(0),
+                              bottomRight: Radius.circular(0),
+                              topLeft: Radius.circular(0),
+                              topRight: Radius.circular(15),
+                            ),
                           ),
-                        ),
-                        child: Padding(
-                          padding:
-                              EdgeInsetsDirectional.fromSTEB(10, 10, 10, 10),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                '로그인',
-                                style: FlutterFlowTheme.of(context)
-                                    .bodyText1
-                                    .override(
-                                      fontFamily: 'NotoSansKR',
-                                      color: Colors.white,
-                                      fontSize: 20,
-                                      useGoogleFonts: false,
-                                    ),
-                              ),
-                            ],
+                          child: Padding(
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(10, 10, 10, 10),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  '로그인',
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyText1
+                                      .override(
+                                        fontFamily: 'NotoSansKR',
+                                        color: Colors.white,
+                                        fontSize: 20,
+                                        useGoogleFonts: false,
+                                      ),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                       ),
@@ -654,29 +532,27 @@ class _LoginWidgetState extends State<LoginWidget> {
                 Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 10),
                   child: InkWell(
-                    onTap: () async{
-                      await viewModel.login();
-                      await fn(context);
-
-                      // if (viewModel.isLogined) {
-                      //   context.pushNamed('HomePage');
-                      // } else {
-                      //   // await showDialog(
-                      //   //   context: context,
-                      //   //   builder: (alertDialogContext) {
-                      //   //     return AlertDialog(
-                      //   //       title: Text('Access Denied!'),
-                      //   //       actions: [
-                      //   //         TextButton(
-                      //   //           onPressed: () =>
-                      //   //               Navigator.pop(alertDialogContext),
-                      //   //           child: Text('Ok'),
-                      //   //         ),
-                      //   //       ],
-                      //   //     );
-                      //   //   },
-                      //   // );
-                      // }
+                    onTap: () async {
+                      loginsuccess = await actions.kakaologin();
+                      if (loginsuccess == true) {
+                        context.pushNamed('onboding02');
+                      } else {
+                        await showDialog(
+                          context: context,
+                          builder: (alertDialogContext) {
+                            return AlertDialog(
+                              title: Text('Access Denied!'),
+                              actions: [
+                                TextButton(
+                                  onPressed: () =>
+                                      Navigator.pop(alertDialogContext),
+                                  child: Text('Ok'),
+                                ),
+                              ],
+                            );
+                          },
+                        );
+                      }
 
                       setState(() {});
                     },

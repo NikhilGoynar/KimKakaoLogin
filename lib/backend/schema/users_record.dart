@@ -35,13 +35,15 @@ abstract class UsersRecord implements Built<UsersRecord, UsersRecordBuilder> {
   @BuiltValueField(wireName: 'job_detective')
   String? get jobDetective;
 
-  @BuiltValueField(wireName: 'like_by')
-  int? get likeBy;
-
   @BuiltValueField(wireName: 'friend_user')
   String? get friendUser;
 
   String? get route;
+
+  BuiltList<String>? get problem;
+
+  @BuiltValueField(wireName: 'like_by')
+  BuiltList<DocumentReference>? get likeBy;
 
   @BuiltValueField(wireName: kDocumentReferenceField)
   DocumentReference? get ffRef;
@@ -57,9 +59,10 @@ abstract class UsersRecord implements Built<UsersRecord, UsersRecordBuilder> {
     ..level = 0
     ..officeDetective = ''
     ..jobDetective = ''
-    ..likeBy = 0
     ..friendUser = ''
-    ..route = '';
+    ..route = ''
+    ..problem = ListBuilder()
+    ..likeBy = ListBuilder();
 
   static CollectionReference get collection =>
       FirebaseFirestore.instance.collection('users');
@@ -93,7 +96,6 @@ Map<String, dynamic> createUsersRecordData({
   int? level,
   String? officeDetective,
   String? jobDetective,
-  int? likeBy,
   String? friendUser,
   String? route,
 }) {
@@ -111,9 +113,10 @@ Map<String, dynamic> createUsersRecordData({
         ..level = level
         ..officeDetective = officeDetective
         ..jobDetective = jobDetective
-        ..likeBy = likeBy
         ..friendUser = friendUser
-        ..route = route,
+        ..route = route
+        ..problem = null
+        ..likeBy = null,
     ),
   );
 

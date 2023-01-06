@@ -1,12 +1,18 @@
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 class UserRequestAdd03Widget extends StatefulWidget {
-  const UserRequestAdd03Widget({Key? key}) : super(key: key);
+  const UserRequestAdd03Widget({
+    Key? key,
+    this.requestDetRef,
+  }) : super(key: key);
+
+  final DocumentReference? requestDetRef;
 
   @override
   _UserRequestAdd03WidgetState createState() => _UserRequestAdd03WidgetState();
@@ -43,7 +49,7 @@ class _UserRequestAdd03WidgetState extends State<UserRequestAdd03Widget> {
             mainAxisSize: MainAxisSize.max,
             children: [
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(15, 30, 15, 0),
+                padding: EdgeInsetsDirectional.fromSTEB(15, 40, 15, 0),
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -86,7 +92,15 @@ class _UserRequestAdd03WidgetState extends State<UserRequestAdd03Widget> {
                       FFAppState().userRequestCallNow = true;
                     });
 
-                    context.pushNamed('user_requestAdd04');
+                    context.pushNamed(
+                      'user_requestAdd05',
+                      queryParams: {
+                        'requestDetRef': serializeParam(
+                          widget.requestDetRef,
+                          ParamType.DocumentReference,
+                        ),
+                      }.withoutNulls,
+                    );
                   },
                   child: Container(
                     width: double.infinity,
@@ -147,6 +161,8 @@ class _UserRequestAdd03WidgetState extends State<UserRequestAdd03Widget> {
                     FFAppState().update(() {
                       FFAppState().userRequestCallNow = false;
                     });
+
+                    context.pushNamed('user_requestAdd04');
                   },
                   child: Container(
                     width: double.infinity,

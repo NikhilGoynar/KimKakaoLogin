@@ -1,25 +1,16 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.mycompany.detective"
     xmlns:tools="http://schemas.android.com/tools">
-   <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
-
-   <application
+    <application
         android:label="Detective"
         tools:replace="android:label"
         android:icon="@mipmap/ic_launcher"
         android:requestLegacyExternalStorage="true">
-        <activity android:name="com.kakao.sdk.flutter.AuthCodeCustomTabsActivity">
-           <intent-filter android:label="flutter_web_auth">
-               <action android:name="android.intent.action.VIEW" />
-               <category android:name="android.intent.category.DEFAULT" />
-               <category android:name="android.intent.category.BROWSABLE" />
-
-               <!-- Redirect URI, "kakao${YOUR_NATIVE_APP_KEY}://oauth" 형식 -->
-               <data android:scheme="kakao5ccdb6fc2baf79a039f413b9f588d7ca" android:host="oauth"/>
-           </intent-filter>
-       </activity>
-
 
         <activity
             android:name=".MainActivity"

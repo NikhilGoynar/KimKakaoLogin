@@ -154,7 +154,7 @@ class _Case01DetailWidgetState extends State<Case01DetailWidget> {
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(0, 0, 8, 0),
+                            padding: EdgeInsetsDirectional.fromSTEB(0, 0, 4, 0),
                             child: Container(
                               width: 155,
                               height: 65,
@@ -594,7 +594,7 @@ class _Case01DetailWidgetState extends State<Case01DetailWidget> {
                                   ),
                                   Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
-                                        0, 8, 0, 0),
+                                        0, 4, 0, 0),
                                     child: Text(
                                       '회원가입',
                                       style: FlutterFlowTheme.of(context)
@@ -627,7 +627,7 @@ class _Case01DetailWidgetState extends State<Case01DetailWidget> {
                                   ),
                                   Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
-                                        0, 8, 0, 0),
+                                        0, 4, 0, 0),
                                     child: Text(
                                       '로그인',
                                       style: FlutterFlowTheme.of(context)
@@ -664,7 +664,7 @@ class _Case01DetailWidgetState extends State<Case01DetailWidget> {
                                   ),
                                   Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
-                                        0, 8, 0, 0),
+                                        0, 4, 0, 0),
                                     child: Text(
                                       '쿠폰함',
                                       style: FlutterFlowTheme.of(context)
@@ -743,7 +743,7 @@ class _Case01DetailWidgetState extends State<Case01DetailWidget> {
                   mainAxisSize: MainAxisSize.max,
                   children: [
                     Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(0, 30, 0, 0),
+                      padding: EdgeInsetsDirectional.fromSTEB(0, 40, 0, 0),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,

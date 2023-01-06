@@ -30,6 +30,17 @@ abstract class RequestRecord
   @BuiltValueField(wireName: 'post_user')
   DocumentReference? get postUser;
 
+  String? get title;
+
+  @BuiltValueField(wireName: 'like_by')
+  BuiltList<DocumentReference>? get likeBy;
+
+  @BuiltValueField(wireName: 'det_userlist')
+  BuiltList<DocumentReference>? get detUserlist;
+
+  @BuiltValueField(wireName: 'comments_count')
+  int? get commentsCount;
+
   @BuiltValueField(wireName: kDocumentReferenceField)
   DocumentReference? get ffRef;
   DocumentReference get reference => ffRef!;
@@ -39,7 +50,11 @@ abstract class RequestRecord
     ..area = ''
     ..callNow = false
     ..description = ''
-    ..file = ListBuilder();
+    ..file = ListBuilder()
+    ..title = ''
+    ..likeBy = ListBuilder()
+    ..detUserlist = ListBuilder()
+    ..commentsCount = 0;
 
   static CollectionReference get collection =>
       FirebaseFirestore.instance.collection('request');
@@ -70,6 +85,8 @@ Map<String, dynamic> createRequestRecordData({
   bool? callNow,
   String? description,
   DocumentReference? postUser,
+  String? title,
+  int? commentsCount,
 }) {
   final firestoreData = serializers.toFirestore(
     RequestRecord.serializer,
@@ -82,7 +99,11 @@ Map<String, dynamic> createRequestRecordData({
         ..callNow = callNow
         ..description = description
         ..file = null
-        ..postUser = postUser,
+        ..postUser = postUser
+        ..title = title
+        ..likeBy = null
+        ..detUserlist = null
+        ..commentsCount = commentsCount,
     ),
   );
 

@@ -16,21 +16,24 @@ class UserRequestAdd04Widget extends StatefulWidget {
 }
 
 class _UserRequestAdd04WidgetState extends State<UserRequestAdd04Widget> {
-  TextEditingController? textController;
+  TextEditingController? textController1;
+  TextEditingController? textController2;
   final _unfocusNode = FocusNode();
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    textController = TextEditingController();
+    textController1 = TextEditingController();
+    textController2 = TextEditingController();
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
   void dispose() {
     _unfocusNode.dispose();
-    textController?.dispose();
+    textController1?.dispose();
+    textController2?.dispose();
     super.dispose();
   }
 
@@ -50,7 +53,7 @@ class _UserRequestAdd04WidgetState extends State<UserRequestAdd04Widget> {
               mainAxisSize: MainAxisSize.max,
               children: [
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0, 30, 0, 0),
+                  padding: EdgeInsetsDirectional.fromSTEB(0, 40, 0, 0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -113,6 +116,96 @@ class _UserRequestAdd04WidgetState extends State<UserRequestAdd04Widget> {
                         Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(0, 0, 3, 5),
                           child: Text(
+                            '상담 제목',
+                            style: FlutterFlowTheme.of(context)
+                                .bodyText1
+                                .override(
+                                  fontFamily: 'NotoSansKR',
+                                  color:
+                                      FlutterFlowTheme.of(context).primaryColor,
+                                  fontSize: 18,
+                                  useGoogleFonts: false,
+                                ),
+                          ),
+                        ),
+                        Container(
+                          width: double.infinity,
+                          height: 55,
+                          decoration: BoxDecoration(
+                            color: FlutterFlowTheme.of(context)
+                                .secondaryBackground,
+                            borderRadius: BorderRadius.circular(15),
+                            border: Border.all(
+                              color: Color(0xFFB0B7BE),
+                            ),
+                          ),
+                          child: TextFormField(
+                            controller: textController1,
+                            obscureText: false,
+                            decoration: InputDecoration(
+                              hintStyle: FlutterFlowTheme.of(context)
+                                  .bodyText2
+                                  .override(
+                                    fontFamily: 'NotoSansKR',
+                                    color: Color(0xFFB0B7BE),
+                                    fontWeight: FontWeight.w500,
+                                    useGoogleFonts: false,
+                                  ),
+                              enabledBorder: UnderlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: Color(0x00000000),
+                                  width: 1,
+                                ),
+                                borderRadius: const BorderRadius.only(
+                                  topLeft: Radius.circular(4.0),
+                                  topRight: Radius.circular(4.0),
+                                ),
+                              ),
+                              focusedBorder: UnderlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: Color(0x00000000),
+                                  width: 1,
+                                ),
+                                borderRadius: const BorderRadius.only(
+                                  topLeft: Radius.circular(4.0),
+                                  topRight: Radius.circular(4.0),
+                                ),
+                              ),
+                              errorBorder: UnderlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: Color(0x00000000),
+                                  width: 1,
+                                ),
+                                borderRadius: const BorderRadius.only(
+                                  topLeft: Radius.circular(4.0),
+                                  topRight: Radius.circular(4.0),
+                                ),
+                              ),
+                              focusedErrorBorder: UnderlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: Color(0x00000000),
+                                  width: 1,
+                                ),
+                                borderRadius: const BorderRadius.only(
+                                  topLeft: Radius.circular(4.0),
+                                  topRight: Radius.circular(4.0),
+                                ),
+                              ),
+                              contentPadding: EdgeInsetsDirectional.fromSTEB(
+                                  15, 15, 15, 15),
+                            ),
+                            style:
+                                FlutterFlowTheme.of(context).bodyText1.override(
+                                      fontFamily: 'NotoSansKR',
+                                      color: Color(0xFF393F41),
+                                      fontWeight: FontWeight.w500,
+                                      useGoogleFonts: false,
+                                    ),
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(0, 10, 3, 5),
+                          child: Text(
                             '상담하고자 하는 내용',
                             style: FlutterFlowTheme.of(context)
                                 .bodyText1
@@ -127,7 +220,7 @@ class _UserRequestAdd04WidgetState extends State<UserRequestAdd04Widget> {
                         ),
                         Container(
                           width: double.infinity,
-                          height: 335,
+                          height: 250,
                           decoration: BoxDecoration(
                             color: FlutterFlowTheme.of(context)
                                 .secondaryBackground,
@@ -137,8 +230,7 @@ class _UserRequestAdd04WidgetState extends State<UserRequestAdd04Widget> {
                             ),
                           ),
                           child: TextFormField(
-                            controller: textController,
-                            autofocus: true,
+                            controller: textController2,
                             obscureText: false,
                             decoration: InputDecoration(
                               hintStyle: FlutterFlowTheme.of(context)
@@ -267,7 +359,8 @@ class _UserRequestAdd04WidgetState extends State<UserRequestAdd04Widget> {
                         area: FFAppState().userRequestAddBot,
                         detectiveUser: FFAppState().userRequestAI,
                         callNow: FFAppState().userRequestCallNow,
-                        description: textController!.text,
+                        description: textController2!.text,
+                        title: textController1!.text,
                       );
                       await RequestRecord.collection
                           .doc()
